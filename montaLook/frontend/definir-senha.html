@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Criar senha | MontaLook</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f7f4f2; font-family: Arial, Helvetica, sans-serif; }
+    .box { max-width: 480px; margin: 8vh auto; }
+    .btn-marrom { background: #6E5F5D; color: white; }
+  </style>
+</head>
+<body>
+  <main class="container box">
+    <div class="card p-4 shadow-sm">
+      <h1 class="h4 mb-3">Crie sua senha de administrador</h1>
+      <form id="formSenha">
+        <label for="senha" class="form-label">Nova senha</label>
+        <input id="senha" type="password" minlength="6" class="form-control mb-3" required>
+        <label for="confirmacao" class="form-label">Confirme a senha</label>
+        <input id="confirmacao" type="password" minlength="6" class="form-control mb-3" required>
+        <button class="btn btn-marrom" type="submit">Criar senha</button>
+        <p id="mensagem" class="mt-3 mb-0" role="status"></p>
+      </form>
+    </div>
+  </main>
+  <script>
+    const form = document.getElementById("formSenha");
+    const mensagem = document.getElementById("mensagem");
+    const token = new URLSearchParams(window.location.search).get("token");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const senha = document.getElementById("senha").value;
+      const confirmacao = document.getElementById("confirmacao").value;
+      if (!token) { mensagem.className = "text-danger"; mensagem.textContent = "Link inválido."; return; }
+      if (senha !== confirmacao) { mensagem.className = "text-danger"; mensagem.textContent = "As senhas não coincidem."; return; }
+      try {
+        const resposta = await fetch("http://localhost:3001/conteudo-home/definir-senha", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token, senha })
+        });
+        const dados = await resposta.json();
+        if (!resposta.ok) throw new Error(dados.error || "Não foi possível criar a senha.");
+        mensagem.className = "text-success";
+        mensagem.textContent = dados.message;
+        form.reset();
+      } catch (error) {
+        mensagem.className = "text-danger";
+        mensagem.textContent = error.message;
+      }
+    });
+  </script>
+</body>
+</html>

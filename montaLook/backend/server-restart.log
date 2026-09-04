@@ -1,0 +1,4 @@
+◇ injected env (15) from .env // tip: ⌘ custom filepath { path: '/custom/path/.env' }
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+◇ injected env (0) from .env // tip: ⌘ multiple files { path: ['.env.local', '.env'] }
+🚀 Servidor MontaLook rodando na porta 3001

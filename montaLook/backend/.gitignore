@@ -1,0 +1,10 @@
+*.zip
+*.rar
+backend/uploads/
+backend/uploads.zip
+node_modules/
+.env
+backend/uploads/
+frontend/videos/
+*.mp4
+*.mov

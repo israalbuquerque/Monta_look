@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificando E-mail - MontaLook</title>
+</head>
+<body>
+    <h2 id="mensagem">Validando e ativando sua conta...</h2>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const params = new URLSearchParams(window.location.search);
+            const token = params.get("token");
+
+            if (!token) {
+                document.getElementById("mensagem").textContent = "Token não encontrado no link.";
+                return;
+            }
+
+            try {
+                const API_URL = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+                    ? "http://localhost:3001/api/confirmar-email"
+                    : "https://montalook-api.onrender.com/api/confirmar-email";
+
+                const resposta = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ token })
+                });
+
+                const dados = await resposta.json();
+
+                if (resposta.ok && dados.sucesso) {
+                    document.getElementById("mensagem").textContent = "E-mail verificado com sucesso! Redirecionando para o login...";
+                    setTimeout(() => {
+                        window.location.href = "./login.html";
+                    }, 2500);
+                } else {
+                    document.getElementById("mensagem").textContent = dados.mensagem || "Falha ao ativar a conta.";
+                }
+            } catch (erro) {
+                console.error("Erro na verificação:", erro);
+                document.getElementById("mensagem").textContent = "Erro ao conectar com o servidor.";
+            }
+        });
+    </script>
+</body>
+</html>

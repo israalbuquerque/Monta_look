@@ -1,0 +1,6 @@
+backend/uploads/
+frontend/videos/
+
+*.mp4
+*.psd
+backend/uploads.zip

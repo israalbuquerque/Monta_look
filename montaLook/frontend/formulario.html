@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Consultoria Personalizada | MontaLook</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,900&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="imagens/logo_3.1.jpeg">
+
+    <style>
+        body {
+            background-color: #fdfdfd;
+            color: #333;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .custom-color-bg {
+            background-color: #6E5F5D !important;
+        }
+
+        .text-white {
+            color: white !important;
+        }
+.logo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+        .editorial-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #6E5F5D;
+            border-bottom: 3px solid #6E5F5D;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .btn-check:checked+.btn-outline-monta {
+            background-color: #6E5F5D;
+            color: white;
+            border-color: #6E5F5D;
+        }
+
+        .btn-outline-monta {
+            border: 1px solid #6E5F5D;
+            color: #6E5F5D;
+            border-radius: 20px;
+            margin: 5px;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            padding: 8px 20px;
+        }
+
+        .btn-outline-monta:hover {
+            background-color: #f4f1ee;
+            color: #6E5F5D;
+        }
+
+        .form-section {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            margin-bottom: 25px;
+            border: 1px solid #eee;
+        }
+
+        .section-label {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: #6E5F5D;
+            margin-bottom: 15px;
+        }
+
+        .result-col {
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            border-top: 5px solid #6E5F5D;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .img-placeholder {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background: #eee;
+        }
+
+        .btn-montalook {
+            background-color: #6E5F5D;
+            color: white;
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 15px 40px;
+            font-family: 'Playfair Display', serif;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-montalook:hover {
+            background-color: #4a3f3d;
+            transform: scale(1.02);
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .resultado-container {
+            background-color: #ffffff;
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 35px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Logo centralizada -->
+    <div class="d-flex justify-content-center my-3">
+        <img src="imagens/logo_3.1.jpeg"
+     alt="Logo MontaLook"
+     class="logo rounded-circle">
+    </div>
+
+
+
+    
+    <!-- MENU -->
+    <!-- MENU CORRIGIDO -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #6E5F5D;">
+        <div class="container">
+
+            <a class="navbar-brand text-white" href="#"></a>
+
+            <!-- Botão mobile -->
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Itens do menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <!-- LINKS CENTRAIS -->
+                <ul class="navbar-nav me-auto ms-auto gap-lg-4 text-center">
+
+                    <li class="nav-item">
+                        <a class='nav-link active text-white' href='/montaLook/frontend/index.html'>Início</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class='nav-link text-white' href='/montaLook/frontend/quem_somos.html'>Quem somos</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class='nav-link text-white' href='/montaLook/frontend/planos.html'>Planos</a>
+                    </li>
+                
+                    <!-- DROPDOWN -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                            Conteúdos
+                        </a>
+                
+                        <ul class="dropdown-menu dropdown-menu-dark text-center" style="background-color: #6E5F5D;">
+                
+                            <li><a class='dropdown-item' href='/montaLook/frontend/celebridades.html'>Celebridades</a></li>
+                
+                            <li><a class='dropdown-item' href='/montaLook/frontend/maquiagem.html'>Maquiagem</a></li>
+                            <li><a class='dropdown-item' href='/montaLook/frontend/cores1.html'>Cores</a></li>
+                            <li><a class='dropdown-item' href='/montaLook/frontend/looks.html'>Looks em alta</a></li>
+                            <li><a class='dropdown-item' href='/montaLook/frontend/corpos.html'>Corpos diversos</a></li>
+                            <li><a class='dropdown-item' href='/montaLook/frontend/Unisex.html'>Unissex</a></li>
+                            <li><a class='dropdown-item' href='/montaLook/frontend/idades.html'>Idades</a></li>
+                            <li><a class='dropdown-item' href='/montaLook/frontend/brecho1.html'>Brechó</a></li>
+                            <li><a class='dropdown-item' href='/montaLook/frontend/modabrasileira1.html'>Moda brasileira</a></li>
+                            <li><a class='dropdown-item' href='/montaLook/frontend/formulario.html'>Formulário Inteligente</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- ÍCONES (À DIREITA) -->
+                <ul class="navbar-nav ms-lg-3 flex-row gap-3 justify-content-center">
+                    <li class="nav-item">
+                        <a class='nav-link' href='/montaLook/frontend/login.html'>
+                            <img src="/montaLook/frontend/imagens/icons8-usuário-de-gênero-neutro-50.png" class="rounded-circle"
+                                style="width: 30px; height: 30px;" alt="Login">
+                        </a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class='nav-link' href='/montaLook/frontend/cadastro.html'>
+                            <img src="/montaLook/frontend/imagens/icons8-cadastro-50.png" class="rounded-circle"
+                                style="width: 30px; height: 30px;" alt="Cadastre-se">
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+
+    <main class="container my-5">
+        <header class="text-center mb-5">
+            <h1 class="editorial-title">Consultoria MontaLook</h1>
+            <p class="lead">Personalize sua experiência e descubra a combinação que exalta sua identidade.</p>
+        </header>
+
+        <section class="p-4 shadow-lg rounded bg-white border border-2 mb-5">
+            <form id="formLook">
+                <div class="form-section mb-4">
+                    <h5 class="section-label">Selecione sua preferência de estilo:</h5>
+                    <div class="d-flex flex-wrap gap-2 mt-2">
+                        <input type="radio" class="btn-check" name="genero" id="Feminino" value="Feminino" checked>
+                        <label class="btn btn-outline-monta" for="Feminino">Estilo Feminino</label>
+
+                        <input type="radio" class="btn-check" name="genero" id="Masculino" value="Masculino">
+                        <label class="btn btn-outline-monta" for="Masculino">Estilo Masculino</label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h5 class="section-label">Onde você vai?</h5>
+                    <div class="d-flex flex-wrap">
+                        <input type="radio" class="btn-check" name="ocasiao" id="Cotidiano" value="Cotidiano" checked>
+                        <label class="btn btn-outline-monta" for="Cotidiano">Cotidiano</label>
+
+                        <input type="radio" class="btn-check" name="ocasiao" id="trabalho" value="Trabalho">
+                        <label class="btn btn-outline-monta" for="trabalho">Trabalho</label>
+
+                        <input type="radio" class="btn-check" name="ocasiao" id="encontro" value="Encontro">
+                        <label class="btn btn-outline-monta" for="encontro">Encontro</label>
+
+                        <input type="radio" class="btn-check" name="ocasiao" id="festa" value="Festa">
+                        <label class="btn btn-outline-monta" for="festa">Festa / Balada</label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h5 class="section-label">Em qual período?</h5>
+                    <div class="d-flex flex-wrap">
+                        <input type="radio" class="btn-check" name="periodo" id="p_manha" value="Manhã" checked>
+                        <label class="btn btn-outline-monta" for="p_manha">Manhã</label>
+
+                        <input type="radio" class="btn-check" name="periodo" id="p_tarde" value="Tarde">
+                        <label class="btn btn-outline-monta" for="p_tarde">Tarde</label>
+
+                        <input type="radio" class="btn-check" name="periodo" id="p_noite" value="Noite">
+                        <label class="btn btn-outline-monta" for="p_noite">Noite</label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h5 class="section-label">O que deseja transmitir?</h5>
+                    <div class="d-flex flex-wrap">
+                        <input type="checkbox" class="btn-check" id="t_elegante">
+                        <label class="btn btn-outline-monta" for="t_elegante">Elegante</label>
+
+                        <input type="checkbox" class="btn-check" id="t_ousada">
+                        <label class="btn btn-outline-monta" for="t_ousada">Moderno</label>
+
+                        <input type="checkbox" class="btn-check" id="t_sexy">
+                        <label class="btn btn-outline-monta" for="t_sexy">Despojado</label>
+
+                        <input type="checkbox" class="btn-check" id="t_fashion">
+                        <label class="btn btn-outline-monta" for="t_fashion">Clean</label>
+                    </div>
+                </div>
+
+                <button type="button" id="btnGerarLook" onclick="gerarSugestao()" class="btn-montalook d-block mx-auto mt-4">
+                    Descobrir Look Completo
+                </button>
+            </form>
+        </section>
+
+        <!-- Resultados -->
+        <div id="secaoResultados" style="display: none;">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="result-col text-center">
+                        <h4 style="font-family: 'Playfair Display'; color: #6E5F5D;">O Look</h4>
+                        <img id="res-img-look" src="imagens/1.png" class="img-placeholder">
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="result-col text-center">
+                        <h4 style="font-family: 'Playfair Display'; color: #6E5F5D;">A Make</h4>
+                        <img id="res-img-make" src="imagens/1.2.png" class="img-placeholder">
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <div class="result-col text-center">
+                        <h4 style="font-family: 'Playfair Display'; color: #6E5F5D;">Acessórios</h4>
+                        <img id="res-img-ace" src="imagens/1.3.png" class="img-placeholder">
+                    </div>
+                </div>
+            </div>
+
+            <div class="resultado-container">
+                <div class="text-center mt-4">
+                    <p id="res-txt-descricao" class="small mx-auto" style="max-width: 900px;"></p>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="button" id="btnSalvarLooks" class="btn" style="background-color: #6E5F5D; color: white; border: none; border-radius: 10px; padding: 12px 30px; margin: 5px;">
+                    Salvar meus looks
+                </button>
+                <a href="meus_looks.html" class="btn" style="background-color: #6E5F5D; color: white; border: none; border-radius: 10px; padding: 12px 30px; margin: 5px;">
+                    Meus Looks Salvos
+                </a>
+                <button type="button" onclick="limparConsultoria()" class="btn btn-outline-secondary" style="border-radius: 10px; padding: 12px 30px; margin: 5px;">
+                    Refazer Teste
+                </button>
+            </div>
+
+            <div id="mensagemSalvar" class="text-center mt-3"></div>
+        </div>
+    </main>
+
+    <!-- Modal Plano Inativo -->
+    <div class="modal fade" id="modalPlanoInativo" tabindex="-1" aria-labelledby="modalPlanoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header text-white" style="background-color: #6E5F5D;">
+                    <h5 class="modal-title" id="modalPlanoLabel" style="font-family: 'Playfair Display', serif;">Acesso Restrito</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <p class="fs-5 text-secondary">Para gerar combinações personalizadas e testar a Consultoria MontaLook, você precisa ter uma <strong>conta com plano ativo</strong>.</p>
+                    <p class="small text-muted">Escolha o plano ideal para você e libere seu acesso agora mesmo!</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0 mb-3">
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Agora não</button>
+                    <a href="/planos" class="btn text-white rounded-pill px-4" style="background-color: #6E5F5D;">Conhecer Planos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background-color: #6E5F5D; color: white;" class="text-center p-4 mt-5">
+        <section class="container my-4">
+            <div class="row g-1" style="margin-top: 10px;">
+                <div class="col-md-4">
+                    <h5>MontaLook</h5>
+                    <p class="small">A moda que respeita sua história e valoriza suas raízes.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Fale Conosco</h5>
+                    <p class="small">montalooks@gmail.com</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Siga a Identidade</h5>
+                    <p class="small">
+                        <a href="https://www.instagram.com/monta_look/">Instagram</a> / 
+                        <a href="https://www.tiktok.com/@monta__look">TikTok</a> / 
+                        <a href="https://x.com/Monta_Look">X</a><br>
+                        @monta_look / @monta__look
+                    </p>
+                </div>
+            </div>
+        </section>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    let looksEncontrados = [];
+    let usuarioTemPlanoAtivo = false;
+
+    const API_HOST = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+        ? "http://localhost:3001"
+        : "https://montalook-api.onrender.com";
+
+    // VERIFICAÇÃO AUTOMÁTICA DE PLANO E PERFIL AO CARREGAR A PÁGINA
+  // DOCUMENT LOAD - COM LOG DE DIAGNÓSTICO
+document.addEventListener("DOMContentLoaded", async function () {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        console.warn("Nenhum token encontrado no localStorage.");
+        exibirModalPlanoInativo();
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_HOST}/api/perfil`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            console.error("Resposta do perfil não foi ok:", response.status);
+            exibirModalPlanoInativo();
+            return;
+        }
+
+        const dados = await response.json();
+        console.log("--> ESTRUTURA DO PERFIL RECEBIDA DO BACKEND:", dados);
+
+        // Tenta encontrar o ID do usuário em diferentes estruturas possíveis
+        const usuarioObj = dados.usuario || dados.user || dados.data || dados;
+        const idUser = usuarioObj.id_usuario || usuarioObj.id || usuarioObj.userId || usuarioObj.id_user;
+
+        if (idUser) {
+            localStorage.setItem("id_usuario", String(idUser));
+            console.log("--> ID do usuário salvo com sucesso no localStorage:", idUser);
+        } else {
+            console.error("--> ID do usuário NÃO encontrado no objeto retornado pela API /api/perfil.");
+        }
+
+        const planoDoUsuario = usuarioObj.id_plano || usuarioObj.plano || usuarioObj.plano_id;
+        const planosValidos = [
+            "Plano Essencial Mensal", "Essencial", "Plano VIP Anual", "VIP", "Estilo Plus",
+            "Degustação", "Ativo", "1", "2", "3", 1, 2, 3
+        ];
+
+        if (usuarioObj && (planoDoUsuario !== undefined) && (planosValidos.includes(planoDoUsuario) || String(planoDoUsuario).length > 0)) {
+            usuarioTemPlanoAtivo = true;
+        } else {
+            console.warn("Plano do usuário não validado:", planoDoUsuario);
+            exibirModalPlanoInativo();
+        }
+
+    } catch (error) {
+        console.error("Erro ao validar perfil do usuário:", error);
+        exibirModalPlanoInativo();
+    }
+});
+
+async function salvarLook() {
+    const idUsuario = localStorage.getItem("id_usuario");
+
+    if (!idUsuario) {
+        alert("Você precisa estar logado para salvar um look.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    if (!window.lookRecomendadoActual || window.lookRecomendadoActual.length !== 3) {
+        alert("Nenhum conjunto válido de look selecionado para salvar.");
+        return;
+    }
+
+    // Pega os 3 IDs retornados pelo recomendador
+    const IDsImagens = window.lookRecomendadoActual.map(item => item.id_imagem);
+
+    // Desabilita o botão para impedir cliques duplos simultâneos
+    const btnSalvar = document.getElementById("btnSalvarLook"); 
+    if (btnSalvar) {
+        btnSalvar.disabled = true;
+        btnSalvar.innerText = "Salvando...";
+    }
+
+    try {
+        const resposta = await fetch("http://localhost:3001/looks/salvar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id_usuario: idUsuario,
+                imagens: IDsImagens
+            })
+        });
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            alert(dados.error || "Não foi possível salvar o look.");
+            return;
+        }
+
+        alert(dados.message || "Look salvo com sucesso!");
+
+    } catch (erro) {
+        console.error("Erro na requisição:", erro);
+        alert("Erro de conexão ao tentar salvar o look.");
+    } finally {
+        if (btnSalvar) {
+            btnSalvar.disabled = false;
+            btnSalvar.innerText = "Salvar Look";
+        }
+    }
+}
+
+    function exibirModalPlanoInativo() {
+        usuarioTemPlanoAtivo = false;
+        const modalEl = document.getElementById("modalPlanoInativo");
+        if (modalEl) {
+            const modal = new bootstrap.Modal(modalEl, {
+                backdrop: 'static',
+                keyboard: false
+            });
+            modal.show();
+        }
+    }
+
+    // FUNÇÃO DE GERAR OS LOOKS
+    async function gerarSugestao() {
+        if (!usuarioTemPlanoAtivo) {
+            exibirModalPlanoInativo();
+            return;
+        }
+
+        const token = localStorage.getItem("token");
+
+        const mapaGenero = { "Feminino": 1, "Masculino": 2 };
+        const mapaOcasiao = { "Cotidiano": 1, "trabalho": 2, "encontro": 3, "festa": 4 };
+        const mapaPeriodo = { "p_manha": 1, "p_tarde": 2, "p_noite": 3 };
+        const mapaTransmitir = { "t_elegante": 1, "t_ousada": 2, "t_sexy": 3, "t_fashion": 4 };
+
+        const inputGenero = document.querySelector('input[name="genero"]:checked');
+        const inputOcasiao = document.querySelector('input[name="ocasiao"]:checked');
+        const inputPeriodo = document.querySelector('input[name="periodo"]:checked');
+        const checkboxMarcado = document.querySelector('#formLook input[type="checkbox"]:checked');
+
+        if (!inputGenero || !inputOcasiao || !inputPeriodo || !checkboxMarcado) {
+            alert("Por favor, selecione uma opção em cada uma das seções!");
+            return;
+        }
+
+        const g = mapaGenero[inputGenero.id];
+        const f1 = mapaOcasiao[inputOcasiao.id];
+        const f2 = mapaPeriodo[inputPeriodo.id];
+        const f3 = mapaTransmitir[checkboxMarcado.id];
+
+        if (!g || !f1 || !f2 || !f3) {
+            alert("Erro no mapeamento dos filtros. Verifique as opções selecionadas.");
+            return;
+        }
+
+        try {
+            const urlBackend = `${API_HOST}/looks/recomendar?g=${g}&f1=${f1}&f2=${f2}&f3=${f3}`;
+
+            const response = await fetch(urlBackend, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            if (response.status === 403) {
+                exibirModalPlanoInativo();
+                return;
+            }
+
+            if (response.status === 404) {
+                alert("Não encontramos nenhuma combinação cadastrada no banco para estes filtros exatos. Tente alterar algumas opções!");
+                return;
+            }
+
+            if (!response.ok) {
+                throw new Error("Erro na comunicação com o servidor.");
+            }
+
+            const dados = await response.json();
+
+            if (!dados || dados.length === 0) {
+                alert("Nenhum look encontrado para esta combinação.");
+                return;
+            }
+
+            looksEncontrados = dados;
+
+            document.getElementById("secaoResultados").style.display = "block";
+
+            if (dados[0]) {
+                document.getElementById("res-img-look").src = API_HOST + dados[0].caminho_imagem;
+                document.getElementById("res-txt-descricao").innerText = dados[0].descricao_imagem || "";
+            }
+            if (dados[1]) {
+                document.getElementById("res-img-make").src = API_HOST + dados[1].caminho_imagem;
+            }
+            if (dados[2]) {
+                document.getElementById("res-img-ace").src = API_HOST + dados[2].caminho_imagem;
+            }
+
+            document.getElementById("secaoResultados").scrollIntoView({ behavior: "smooth" });
+
+        } catch (error) {
+            console.error("Erro na requisição:", error);
+            alert(error.message);
+        }
+    }
+
+    // EVENTO SALVAR MEUS LOOKS (CORRIGIDO COM RESGATE AUTOMÁTICO DE ID)
+    document.getElementById("btnSalvarLooks").addEventListener("click", async function () {
+        try {
+            let idUsuario = localStorage.getItem("id_usuario");
+            const token = localStorage.getItem("token");
+
+            if (!token) {
+                alert("Sessão expirada. Faça login novamente.");
+                return;
+            }
+
+            // Tenta obter id_usuario via perfil caso não esteja presente no localStorage
+            if (!idUsuario || idUsuario === "null" || idUsuario === "undefined") {
+                const resPerfil = await fetch(`${API_HOST}/api/perfil`, {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                if (resPerfil.ok) {
+                    const dadosPerfil = await resPerfil.json();
+                    const userObj = dadosPerfil.usuario || dadosPerfil;
+                    idUsuario = userObj.id_usuario || userObj.id;
+                    if (idUsuario) {
+                        localStorage.setItem("id_usuario", idUsuario);
+                    }
+                }
+            }
+
+            if (!idUsuario || idUsuario === "null" || idUsuario === "undefined") {
+                alert("Usuário não identificado. Faça login novamente.");
+                return;
+            }
+
+            if (!looksEncontrados || looksEncontrados.length === 0) {
+                alert("Primeiro clique em 'Descobrir Look Completo' para gerar os looks.");
+                return;
+            }
+
+            const imagens = looksEncontrados.map(look => look.id_imagem);
+
+            const response = await fetch(`${API_HOST}/looks/salvar`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    id_usuario: Number(idUsuario),
+                    imagens: imagens
+                })
+            });
+
+            const dados = await response.json();
+
+            if (!response.ok) {
+                throw new Error(dados.error || dados.message || "Erro ao salvar os looks.");
+            }
+
+            document.getElementById("mensagemSalvar").innerHTML = `
+                <div class="alert alert-success">
+                    ${dados.message || "Looks salvos com sucesso!"}
+                </div>
+            `;
+
+        } catch (error) {
+            console.error("Erro ao salvar os looks:", error);
+            document.getElementById("mensagemSalvar").innerHTML = `
+                <div class="alert alert-danger">
+                    ${error.message}
+                </div>
+            `;
+        }
+    });
+
+    // REINICIAR / LIMPAR FORMULÁRIO E RESULTADOS
+    function limparConsultoria() {
+        document.getElementById("formLook").reset();
+
+        const secaoRes = document.getElementById("secaoResultados");
+        if (secaoRes) {
+            secaoRes.style.display = "none";
+        }
+
+        document.getElementById("res-img-look").src = "imagens/1.png";
+        document.getElementById("res-img-make").src = "imagens/1.2.png";
+        document.getElementById("res-img-ace").src = "imagens/1.3.png";
+
+        document.getElementById("res-txt-descricao").innerText = "";
+        document.getElementById("mensagemSalvar").innerHTML = "";
+
+        looksEncontrados = [];
+
+        document.getElementById("formLook").scrollIntoView({ behavior: "smooth" });
+    }
+</script>
+</body>
+
+</html>

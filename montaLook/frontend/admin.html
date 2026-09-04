@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Administrador | MontaLook</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root { --marrom: #6E5F5D; --fundo: #f7f4f2; }
+        body { background: var(--fundo); font-family: Arial, Helvetica, sans-serif; }
+        .navbar, .btn-marrom { background: var(--marrom); }
+        .btn-marrom { color: white; }
+        .btn-marrom:hover { background: #584b49; color: white; }
+        .editor-card { border: 0; box-shadow: 0 5px 22px rgba(55, 44, 40, .08); }
+        .section-title { color: var(--marrom); border-bottom: 2px solid #d8ceca; padding-bottom: .5rem; }
+        .status { min-height: 24px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark mb-4">
+        <div class="container d-flex justify-content-between">
+            <span class="navbar-brand">MontaLook | Administração</span>
+            <div>
+                <a class="btn btn-sm btn-outline-light me-2" href="index.html">Ver home</a>
+                <button id="sair" class="btn btn-sm btn-light">Sair</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container pb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h3 mb-1">Conteúdo da página inicial</h1>
+                <p class="text-muted mb-0">Altere textos e caminhos dos arquivos publicados na home.</p>
+            </div>
+            <button id="salvar" type="button" class="btn btn-marrom" data-salvar>Salvar alterações</button>
+        </div>
+        <div id="mensagem" class="status mb-3" role="status"></div>
+        <section class="card editor-card p-4 mb-4">
+            <h2 class="h5 section-title">Criar usuário administrador</h2>
+            <p class="text-muted">O novo usuário receberá um e-mail para criar a própria senha.</p>
+            <form id="formNovoAdmin" class="row g-3">
+                <div class="col-12 col-md-4">
+                    <label for="novoAdminNome" class="form-label fw-semibold">Nome</label>
+                    <input id="novoAdminNome" class="form-control" required>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label for="novoAdminEmail" class="form-label fw-semibold">E-mail</label>
+                    <input id="novoAdminEmail" type="email" class="form-control" required>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-marrom">Criar administrador</button>
+                    <span id="statusNovoAdmin" class="ms-2 small" role="status"></span>
+                </div>
+            </form>
+        </section>
+        <section class="card editor-card p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+                <h2 class="h5 section-title mb-0 flex-grow-1">Gerenciar administradores</h2>
+                <button id="atualizarAdministradores" type="button" class="btn btn-sm btn-outline-secondary">
+                    Atualizar lista
+                </button>
+            </div>
+            <p class="text-muted">Consulte os administradores cadastrados e inative o acesso quando necessário.</p>
+            <div id="listaAdministradores" class="table-responsive"></div>
+        </section>
+        <section class="card editor-card p-4 mb-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <h2 class="h5 section-title mb-0 flex-grow-1">Clientes e pagamentos</h2>
+                <button id="atualizarClientes" type="button" class="btn btn-sm btn-outline-secondary">
+                    Atualizar lista
+                </button>
+            </div>
+            <div id="resumoClientes" class="row g-3 mb-3"></div>
+            <div class="mb-3">
+                <label for="buscarCliente" class="visually-hidden">Buscar cliente</label>
+                <input id="buscarCliente" type="search" class="form-control" placeholder="Buscar por nome ou e-mail">
+            </div>
+            <div id="listaClientes" class="table-responsive"></div>
+        </section>
+        <form id="formAdmin">
+            <section class="card editor-card p-4 mb-4">
+                <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+                    <h2 class="h5 section-title mb-0 flex-grow-1">Carrossel</h2>
+                    <button type="button" class="btn btn-sm btn-marrom" data-salvar>Salvar carrossel</button>
+                </div>
+                <div id="heroFields" class="row g-3"></div>
+            </section>
+            <section class="card editor-card p-4 mb-4">
+                <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+                    <h2 class="h5 section-title mb-0 flex-grow-1">Destaques</h2>
+                    <button type="button" class="btn btn-sm btn-marrom" data-salvar>Salvar destaques</button>
+                </div>
+                <div id="destaqueFields" class="row g-3"></div>
+            </section>
+            <section class="card editor-card p-4 mb-4">
+                <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+                    <h2 class="h5 section-title mb-0 flex-grow-1">Cards de conteúdos</h2>
+                    <button type="button" class="btn btn-sm btn-marrom" data-salvar>Salvar cards</button>
+                </div>
+                <p class="text-muted">Edite os quatro cards exibidos na seção ilustrada da página inicial.</p>
+                <div id="cardsConteudoFields" class="row g-3"></div>
+            </section>
+            <section class="card editor-card p-4 mb-4">
+                <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+                    <h2 class="h5 section-title mb-0 flex-grow-1">Textos institucionais</h2>
+                    <button type="button" class="btn btn-sm btn-marrom" data-salvar>Salvar textos</button>
+                </div>
+                <div id="textoFields" class="row g-3"></div>
+            </section>
+            <section class="card editor-card p-4 mb-4">
+                <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+                    <h2 class="h5 section-title mb-0 flex-grow-1">Planos</h2>
+                    <button type="button" class="btn btn-sm btn-marrom" data-salvar>Salvar planos</button>
+                </div>
+                <div id="planoFields" class="row g-3"></div>
+            </section>
+        </form>
+    </main>
+    <script src="admin.js"></script>
+</body>
+</html>
