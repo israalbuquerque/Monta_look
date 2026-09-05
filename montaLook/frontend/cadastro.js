@@ -269,7 +269,7 @@ if (respostaCadastro.ok) {
   alert('🎉 Cadastro e pagamento realizados com sucesso!');
 
   // Redireciona diretamente para a tela inicial já logado
-  window.location.href = '/montaLook/frontend/index.html';
+  window.location.href = '/index.html';
 } else {
   alert('Erro no cadastro: ' + (dadosCadastro.error || 'Não foi possível concluir o registro.'));
 }
