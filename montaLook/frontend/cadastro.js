@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 1. PROCESSAR CARTÃO DE CRÉDITO/DÉBITO
         if (opcaoPagamento === 'Cartão Crédito' || opcaoPagamento === 'Cartão Débito') {
-          const respostaIntent = await fetch('http://localhost:3001/api/clientes/criar-pagamento-cartao', {
+          const respostaIntent = await fetch('https://montalook-api.onrender.com/api/clientes/criar-pagamento-cartao', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ valor: infoPlano.valorCentavos })
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // 2. PROCESSAR PIX
         else if (opcaoPagamento && opcaoPagamento.toLowerCase() === 'pix') {
-          const respostaIntent = await fetch('http://localhost:3001/api/clientes/criar-pagamento-pix', {
+          const respostaIntent = await fetch('https://montalook-api.onrender.com/api/clientes/criar-pagamento-pix', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ valor: infoPlano.valorCentavos })
