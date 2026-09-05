@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // 3. REGISTRAR O USUÁRIO E A ASSINATURA NO BANCO DE DADOS
-        const respostaCadastro = await fetch('http://localhost:3001/api/cadastro', {
+        const respostaCadastro = await fetch('https://montalook-api.onrender.com/api/cadastro', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
