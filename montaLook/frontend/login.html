@@ -248,8 +248,10 @@
 
     <!-- LÓGICA DE AUTENTICAÇÃO -->
     <!-- LÓGICA DE AUTENTICAÇÃO E ATIVAÇÃO -->
+   <!-- LÓGICA DE AUTENTICAÇÃO E ATIVAÇÃO -->
     <script>
-        const API_HOST = "http://localhost:3001";
+        // Substituído o localhost pela URL pública do seu backend hospedado no Render
+        const API_HOST = "https://montalook-api.onrender.com";
 
         document.addEventListener("DOMContentLoaded", async () => {
             // =========================================================
@@ -329,8 +331,9 @@
                         mensagem.className = "text-success text-center mt-3";
                         mensagem.textContent = "Login efetuado com sucesso! Redirecionando...";
 
+                        // Corrigido para apontar para a página correta sem os caminhos de pastas locais do Windows
                         setTimeout(() => {
-                            window.location.href = "/montaLook/frontend/perfil.html";
+                            window.location.href = "perfil.html";
                         }, 1500);
 
                     } catch (erro) {
