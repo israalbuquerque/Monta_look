@@ -325,12 +325,17 @@ const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY)
   : null;
 
+import nodemailer from "nodemailer";
+
 const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
+    host: "smtp.gmail.com",
+    port: 2525,        // Usa a porta alternativa para burlar o firewall do Render
+    secure: false,      
+    family: 4,          
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
 });
 
 transporter.verify((error) => {
