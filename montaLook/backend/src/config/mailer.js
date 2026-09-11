@@ -257,12 +257,11 @@
 
 import nodemailer from "nodemailer";
 
-// 1. O transporter fica FORA da função (instanciado uma única vez)
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // Requerido para a porta 587 (TLS)
-    family: 4,     // FORÇA O USO DE IPv4 (resolve o erro ENETUNREACH no Render)
+    port: 2525,        // Usa a porta alternativa para burlar o firewall do Render
+    secure: false,      
+    family: 4,          
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
