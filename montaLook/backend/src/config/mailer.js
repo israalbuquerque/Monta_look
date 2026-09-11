@@ -176,49 +176,122 @@
 
 
 
-import nodemailer from "nodemailer"; // Importa a biblioteca Nodemailer para gerenciar e disparar e-mails
+// import nodemailer from "nodemailer"; // Importa a biblioteca Nodemailer para gerenciar e disparar e-mails
 
-// Configura o objeto transportador reutilizável utilizando credenciais salvas no ambiente (.env)
+// // Configura o objeto transportador reutilizável utilizando credenciais salvas no ambiente (.env)
+// const transporter = nodemailer.createTransport({
+//     service: "gmail", // Define o Gmail como o provedor de serviço de e-mail
+//     auth: {
+//         user: process.env.EMAIL_USER, // Conta de e-mail do remetente obtida das variáveis de ambiente
+//         pass: process.env.EMAIL_PASS  // Senha de aplicativo do Google obtida do arquivo .env
+//     }
+// });
+
+// /**
+//  * Envia e-mail com token de acesso/autenticação
+//  * @param {string} emailDestino - E-mail do destinatário
+//  * @param {string} nomeUsuario - Nome do usuário para personalização
+//  * @param {string} token - Token JWT gerado no backend
+//  */
+// export const enviarEmailToken = async (emailDestino, nomeUsuario, token) => { 
+//     // Pega a URL do frontend do ambiente de produção (Render) ou usa o localhost como fallback de desenvolvimento
+//     const baseUrl = process.env.FRONTEND_URL || "http://127.0.0.1:5500/montaLook/frontend";
+
+//     // Link final gerado apontando para a página de login com o token
+//     const linkAcesso = `${baseUrl}/login.html?token=${token}`;
+
+//     // Define o objeto com todas as configurações e o conteúdo da mensagem
+//     const mailOptions = {
+//         from: `"MontaLook" <${process.env.EMAIL_USER}>`, // Define o nome exibido e o e-mail do remetente
+//         to: emailDestino, // Define o e-mail do destinatário recebido como parâmetro
+//         subject: "Bem-vindo ao MontaLook! Seu token de acesso", // Define o assunto exibido na caixa de entrada
+//         html: `
+//             <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+//                 <h2 style="color: #6E5F5D; text-align: center;">Olá, ${nomeUsuario}!</h2>
+//                 <p>Seu cadastro no <strong>MontaLook</strong> foi realizado com sucesso.</p>
+//                 <p>Abaixo está o seu token de primeiro acesso:</p>
+                
+//                 <!-- Bloco estilizado para exibir a string pura do token JWT -->
+//                 <div style="background-color: #f4f4f4; padding: 12px; border-radius: 5px; word-break: break-all; font-family: monospace; text-align: center; font-weight: bold; color: #6E5F5D; margin: 15px 0;">
+//                     ${token}
+//                 </div>
+                
+//                 <p>Você também pode acessar seu perfil diretamente clicando no botão abaixo:</p>
+                
+//                 <!-- Botão com o link direto de acesso formatado -->
+//                 <div style="text-align: center; margin: 25px 0;">
+//                     <a href="${linkAcesso}" style="background-color: #6E5F5D; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+//                         Acessar Meu Perfil
+//                     </a>
+//                 </div>
+
+//                 <hr style="border: none; border-top: 1px solid #eee; margin-top: 30px;">
+//                 <p style="font-size: 12px; color: #888; text-align: center;">Se você não realizou esta solicitação, por favor ignore este e-mail.</p>
+//             </div>
+//         `
+//     };
+
+//     try {
+//         // Dispara a mensagem assincronamente através do transportador do Nodemailer
+//         const info = await transporter.sendMail(mailOptions);
+//         console.log("✅ E-mail enviado com sucesso. ID:", info.messageId); 
+//         return { success: true, messageId: info.messageId }; 
+//     } catch (error) {
+//         console.error("❌ Erro ao enviar e-mail via Nodemailer:", error.message); 
+//         // Retornamos um objeto de erro controlado em vez de dar 'throw error', 
+//         // assim o cadastro do usuário não é desfeito caso o e-mail falhe por timeout.
+//         return { success: false, error: error.message }; 
+//     }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+import nodemailer from "nodemailer";
+
+// 1. O transporter fica FORA da função (instanciado uma única vez)
 const transporter = nodemailer.createTransport({
-    service: "gmail", // Define o Gmail como o provedor de serviço de e-mail
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // Requerido para a porta 587 (TLS)
+    family: 4,     // FORÇA O USO DE IPv4 (resolve o erro ENETUNREACH no Render)
     auth: {
-        user: process.env.EMAIL_USER, // Conta de e-mail do remetente obtida das variáveis de ambiente
-        pass: process.env.EMAIL_PASS  // Senha de aplicativo do Google obtida do arquivo .env
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
 
 /**
  * Envia e-mail com token de acesso/autenticação
- * @param {string} emailDestino - E-mail do destinatário
- * @param {string} nomeUsuario - Nome do usuário para personalização
- * @param {string} token - Token JWT gerado no backend
  */
 export const enviarEmailToken = async (emailDestino, nomeUsuario, token) => { 
-    // Pega a URL do frontend do ambiente de produção (Render) ou usa o localhost como fallback de desenvolvimento
     const baseUrl = process.env.FRONTEND_URL || "http://127.0.0.1:5500/montaLook/frontend";
-
-    // Link final gerado apontando para a página de login com o token
     const linkAcesso = `${baseUrl}/login.html?token=${token}`;
 
-    // Define o objeto com todas as configurações e o conteúdo da mensagem
     const mailOptions = {
-        from: `"MontaLook" <${process.env.EMAIL_USER}>`, // Define o nome exibido e o e-mail do remetente
-        to: emailDestino, // Define o e-mail do destinatário recebido como parâmetro
-        subject: "Bem-vindo ao MontaLook! Seu token de acesso", // Define o assunto exibido na caixa de entrada
+        from: `"MontaLook" <${process.env.EMAIL_USER}>`,
+        to: emailDestino,
+        subject: "Bem-vindo ao MontaLook! Seu token de acesso",
         html: `
             <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
                 <h2 style="color: #6E5F5D; text-align: center;">Olá, ${nomeUsuario}!</h2>
                 <p>Seu cadastro no <strong>MontaLook</strong> foi realizado com sucesso.</p>
                 <p>Abaixo está o seu token de primeiro acesso:</p>
                 
-                <!-- Bloco estilizado para exibir a string pura do token JWT -->
                 <div style="background-color: #f4f4f4; padding: 12px; border-radius: 5px; word-break: break-all; font-family: monospace; text-align: center; font-weight: bold; color: #6E5F5D; margin: 15px 0;">
                     ${token}
                 </div>
                 
                 <p>Você também pode acessar seu perfil diretamente clicando no botão abaixo:</p>
                 
-                <!-- Botão com o link direto de acesso formatado -->
                 <div style="text-align: center; margin: 25px 0;">
                     <a href="${linkAcesso}" style="background-color: #6E5F5D; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
                         Acessar Meu Perfil
@@ -231,15 +304,13 @@ export const enviarEmailToken = async (emailDestino, nomeUsuario, token) => {
         `
     };
 
+    // 2. O bloco try/catch serve especificamente para DISPARAR o e-mail
     try {
-        // Dispara a mensagem assincronamente através do transportador do Nodemailer
         const info = await transporter.sendMail(mailOptions);
         console.log("✅ E-mail enviado com sucesso. ID:", info.messageId); 
         return { success: true, messageId: info.messageId }; 
     } catch (error) {
         console.error("❌ Erro ao enviar e-mail via Nodemailer:", error.message); 
-        // Retornamos um objeto de erro controlado em vez de dar 'throw error', 
-        // assim o cadastro do usuário não é desfeito caso o e-mail falhe por timeout.
         return { success: false, error: error.message }; 
     }
 };
