@@ -325,7 +325,7 @@ const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY)
   : null;
 
-import nodemailer from "nodemailer";
+
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
