@@ -255,61 +255,122 @@
 
 
 
-import nodemailer from "nodemailer";
+// import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 2525,        // Usa a porta alternativa para burlar o firewall do Render
-    secure: false,      
-    family: 4,          
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
+// const transporter = nodemailer.createTransport({
+//     host: "smtp.gmail.com",
+//     port: 2525,        // Usa a porta alternativa para burlar o firewall do Render
+//     secure: false,      
+//     family: 4,          
+//     auth: {
+//         user: process.env.EMAIL_USER,
+//         pass: process.env.EMAIL_PASS
+//     }
+// });
+
+// /**
+//  * Envia e-mail com token de acesso/autenticação
+//  */
+// export const enviarEmailToken = async (emailDestino, nomeUsuario, token) => { 
+//     const baseUrl = process.env.FRONTEND_URL || "http://127.0.0.1:5500/montaLook/frontend";
+//     const linkAcesso = `${baseUrl}/login.html?token=${token}`;
+
+//     const mailOptions = {
+//         from: `"MontaLook" <${process.env.EMAIL_USER}>`,
+//         to: emailDestino,
+//         subject: "Bem-vindo ao MontaLook! Seu token de acesso",
+//         html: `
+//             <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+//                 <h2 style="color: #6E5F5D; text-align: center;">Olá, ${nomeUsuario}!</h2>
+//                 <p>Seu cadastro no <strong>MontaLook</strong> foi realizado com sucesso.</p>
+//                 <p>Abaixo está o seu token de primeiro acesso:</p>
+                
+//                 <div style="background-color: #f4f4f4; padding: 12px; border-radius: 5px; word-break: break-all; font-family: monospace; text-align: center; font-weight: bold; color: #6E5F5D; margin: 15px 0;">
+//                     ${token}
+//                 </div>
+                
+//                 <p>Você também pode acessar seu perfil diretamente clicando no botão abaixo:</p>
+                
+//                 <div style="text-align: center; margin: 25px 0;">
+//                     <a href="${linkAcesso}" style="background-color: #6E5F5D; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+//                         Acessar Meu Perfil
+//                     </a>
+//                 </div>
+
+//                 <hr style="border: none; border-top: 1px solid #eee; margin-top: 30px;">
+//                 <p style="font-size: 12px; color: #888; text-align: center;">Se você não realizou esta solicitação, por favor ignore este e-mail.</p>
+//             </div>
+//         `
+//     };
+
+//     // 2. O bloco try/catch serve especificamente para DISPARAR o e-mail
+//     try {
+//         const info = await transporter.sendMail(mailOptions);
+//         console.log("✅ E-mail enviado com sucesso. ID:", info.messageId); 
+//         return { success: true, messageId: info.messageId }; 
+//     } catch (error) {
+//         console.error("❌ Erro ao enviar e-mail via Nodemailer:", error.message); 
+//         return { success: false, error: error.message }; 
+//     }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+import { Resend } from 'resend';
+
+// Inicializa o Resend com a chave de API das variáveis de ambiente
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 /**
- * Envia e-mail com token de acesso/autenticação
+ * Envia e-mail com token de acesso/autenticação via Resend API
  */
-export const enviarEmailToken = async (emailDestino, nomeUsuario, token) => { 
+export const enviarEmailToken = async (emailDestino, nomeUsuario, token) => {  
     const baseUrl = process.env.FRONTEND_URL || "http://127.0.0.1:5500/montaLook/frontend";
     const linkAcesso = `${baseUrl}/login.html?token=${token}`;
 
-    const mailOptions = {
-        from: `"MontaLook" <${process.env.EMAIL_USER}>`,
-        to: emailDestino,
-        subject: "Bem-vindo ao MontaLook! Seu token de acesso",
-        html: `
-            <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
-                <h2 style="color: #6E5F5D; text-align: center;">Olá, ${nomeUsuario}!</h2>
-                <p>Seu cadastro no <strong>MontaLook</strong> foi realizado com sucesso.</p>
-                <p>Abaixo está o seu token de primeiro acesso:</p>
-                
-                <div style="background-color: #f4f4f4; padding: 12px; border-radius: 5px; word-break: break-all; font-family: monospace; text-align: center; font-weight: bold; color: #6E5F5D; margin: 15px 0;">
-                    ${token}
-                </div>
-                
-                <p>Você também pode acessar seu perfil diretamente clicando no botão abaixo:</p>
-                
-                <div style="text-align: center; margin: 25px 0;">
-                    <a href="${linkAcesso}" style="background-color: #6E5F5D; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
-                        Acessar Meu Perfil
-                    </a>
-                </div>
-
-                <hr style="border: none; border-top: 1px solid #eee; margin-top: 30px;">
-                <p style="font-size: 12px; color: #888; text-align: center;">Se você não realizou esta solicitação, por favor ignore este e-mail.</p>
-            </div>
-        `
-    };
-
-    // 2. O bloco try/catch serve especificamente para DISPARAR o e-mail
     try {
-        const info = await transporter.sendMail(mailOptions);
-        console.log("✅ E-mail enviado com sucesso. ID:", info.messageId); 
-        return { success: true, messageId: info.messageId }; 
+        const data = await resend.emails.send({
+            from: 'MontaLook <onboarding@resend.dev>', // Ou seu domínio customizado se já configurou no Resend
+            to: [emailDestino],
+            subject: "Bem-vindo ao MontaLook! Seu token de acesso",
+            html: `
+                <div style="font-family: Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+                    <h2 style="color: #6E5F5D; text-align: center;">Olá, ${nomeUsuario}!</h2>
+                    <p>Seu cadastro no <strong>MontaLook</strong> foi realizado com sucesso.</p>
+                    <p>Abaixo está o seu token de primeiro acesso:</p>
+                    
+                    <div style="background-color: #f4f4f4; padding: 12px; border-radius: 5px; word-break: break-all; font-family: monospace; text-align: center; font-weight: bold; color: #6E5F5D; margin: 15px 0;">
+                        ${token}
+                    </div>
+                    
+                    <p>Você também pode acessar seu perfil diretamente clicando no botão abaixo:</p>
+                    
+                    <div style="text-align: center; margin: 25px 0;">
+                        <a href="${linkAcesso}" style="background-color: #6E5F5D; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;">
+                            Acessar Meu Perfil
+                        </a>
+                    </div>
+
+                    <hr style="border: none; border-top: 1px solid #eee; margin-top: 30px;">
+                    <p style="font-size: 12px; color: #888; text-align: center;">Se você não realizou esta solicitação, por favor ignore este e-mail.</p>
+                </div>
+            `
+        });
+
+        console.log("✅ E-mail enviado com sucesso via Resend. ID:", data.id); 
+        return { success: true, messageId: data.id }; 
     } catch (error) {
-        console.error("❌ Erro ao enviar e-mail via Nodemailer:", error.message); 
+        console.error("❌ Erro ao enviar e-mail via Resend:", error.message); 
         return { success: false, error: error.message }; 
     }
 };
